@@ -16,6 +16,7 @@
 
 package com.mxhung.productdiscoveryandroid.repository
 
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -73,13 +74,14 @@ abstract class NetworkBoundResource<ResultType, RequestType>
             when (response) {
                 is ApiSuccessResponse -> {
                     appExecutors.diskIO().execute {
-//                        saveCallResult(processResponse(response))
+                        saveCallResult(processResponse(response))
                         appExecutors.mainThread().execute {
                             // we specially request a new live data,
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.
                             result.addSource(loadFromDb()) { newData ->
                                 setValue(Resource.success(newData))
+                                Log.d("fetchFromNetwork", " ApiSuccessResponse $newData")
                             }
                         }
                     }
@@ -89,6 +91,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                         // reload from disk whatever we had
                         result.addSource(loadFromDb()) { newData ->
                             setValue(Resource.success(newData))
+                            Log.d("fetchFromNetwork", " EmptyResponse $newData")
                         }
                     }
                 }
@@ -97,6 +100,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                     result.addSource(dbSource) { newData ->
                         setValue(Resource.error(response.errorMessage, newData))
                     }
+                    Log.d("fetchFromNetwork", " onFetchFailed $response.errorMessage")
                 }
             }
         }
@@ -119,5 +123,5 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     protected abstract fun loadFromDb(): LiveData<ResultType>
 
     @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<RepoSearchResponse>>
+    protected abstract fun createCall(): LiveData<ApiResponse<RequestType>>
 }

@@ -1,54 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MergeRootFrame"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <View
-        android:id="@+id/toolbar"
+    <fragment
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:navGraph="@navigation/main"
+        app:defaultNavHost="true"
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_48dp"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/reddishOrange"/>
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgBack"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        android:layout_marginTop="@dimen/margin_12dp"
-        android:layout_marginStart="@dimen/margin_12dp"
-        android:layout_marginBottom="@dimen/margin_12dp"
-        android:layout_marginLeft="@dimen/margin_12dp" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="0dp"
-        android:layout_height="@dimen/height_32dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgBack"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="@dimen/margin_8dp"
-        android:layout_marginStart="@dimen/margin_12dp"
-        android:layout_marginBottom="@dimen/margin_8dp"
-        android:layout_marginLeft="@dimen/margin_12dp"
-        android:layout_marginEnd="@dimen/margin_12dp"
-        android:hint="Nhập tên, mã sản phẩm"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:drawableLeft="@mipmap/ic_launcher"
-        android:background="@drawable/background_border"
-        android:textSize="@dimen/text_size_14sp"
-        android:textColor="@color/coolGrey"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
-    </androidx.recyclerview.widget.RecyclerView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
+</FrameLayout>

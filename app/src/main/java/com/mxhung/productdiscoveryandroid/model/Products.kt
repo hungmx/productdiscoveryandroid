@@ -2,139 +2,154 @@ package com.mxhung.productdiscoveryandroid.model
 
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.mxhung.productdiscoveryandroid.db.GithubTypeConverters
 
-@Entity
+@Entity(primaryKeys = ["sku"])
+@TypeConverters(GithubTypeConverters::class)
 data class Products(
-    @field:SerializedName("sku") val sku: Int,
-    @field:SerializedName("name") val name: String,
-    @field:SerializedName("url") val url: String,
-    @field:SerializedName("seller")
-    @field:Embedded(prefix = "seller_")
+    @SerializedName("sku") val sku: Int = 0,
+    @SerializedName("name") val name: String?,
+    @SerializedName("url") val url: String?,
+    @SerializedName("seller")
+    @Embedded(prefix = "seller_")
     val seller: Seller,
-    @field:SerializedName("brand")
-    @field:Embedded(prefix = "brand_")
+    @SerializedName("brand")
+    @Embedded(prefix = "brand_")
     val brand: Brand,
-    @field:SerializedName("status")
-    @field:Embedded(prefix = "status_")
+    @SerializedName("status")
+    @Embedded(prefix = "status_")
     val status: Status,
-    @field:SerializedName("objective")
-    @field:Embedded(prefix = "objective_")
+    @SerializedName("objective")
+    @Embedded(prefix = "objective_")
     val objective: Objective,
-    @field:SerializedName("productType")
-    @field:Embedded(prefix = "productType_")
+    @SerializedName("productType")
+    @Embedded(prefix = "productType_")
     val productType: ProductType,
-    @field:SerializedName("images") val images: List<String>,
-    @field:SerializedName("price") val price: Price,
-    @field:SerializedName("productLine") val productLine: ProductLine,
-    @field:SerializedName("stocks") val stocks: List<String>,
-    @field:SerializedName("totalAvailable") val totalAvailable: String,
-    @field:SerializedName("isBundle") val isBundle: Boolean,
-    @field:SerializedName("bundleProducts") val bundleProducts: String,
-    @field:SerializedName("parentBundles") val parentBundles: String,
-    @field:SerializedName("totalAvailableByStocks") val totalAvailableByStocks: List<String>,
-    @field:SerializedName("displayName") val displayName: String,
-    @field:SerializedName("color") val color: Color,
-    @field:SerializedName("tags") val tags: List<String>,
-    @field:SerializedName("promotionPrices") val promotionPrices: List<PromotionPrices>,
-    @field:SerializedName("promotions") val promotions: List<String>,
-    @field:SerializedName("flashSales") val flashSales: List<String>,
-    @field:SerializedName("attributeSet") val attributeSet: AttributeSet,
-    @field:SerializedName("categories") val categories: List<Categories>,
-    @field:SerializedName("magentoId") val magentoId: Int,
-    @field:SerializedName("seoInfo")
-    @field:Embedded(prefix = "seoInfo_")
+    @SerializedName("images") val images: List<Images>,
+    @SerializedName("price") val price: Price,
+    @SerializedName("productLine") val productLine: ProductLine,
+    @SerializedName("stocks") val stocks: List<String>,
+    @SerializedName("totalAvailable") val totalAvailable: Int = 0,
+    @SerializedName("isBundle") val isBundle: Boolean,
+    @SerializedName("bundleProducts") val bundleProducts: Int = 0,
+    @SerializedName("parentBundles") val parentBundles: Int = 0,
+    @SerializedName("totalAvailableByStocks") val totalAvailableByStocks: List<TotalAvailableByStocks>,
+    @SerializedName("displayName") val displayName: String?,
+    @SerializedName("tags") val tags: List<String>,
+    @SerializedName("promotionPrices") val promotionPrices: List<PromotionPrices>,
+    @SerializedName("promotions") val promotions: List<String>,
+    @SerializedName("flashSales") val flashSales: List<String>,
+    @SerializedName("attributeSet") val attributeSet: AttributeSet,
+    @SerializedName("categories") val categories: List<Categories>,
+    @SerializedName("magentoId") val magentoId: Int = 0,
+    @SerializedName("seoInfo")
+    @Embedded(prefix = "seoInfo_")
     val seoInfo: SeoInfo,
-    @field:SerializedName("rating")
-    @field:Embedded(prefix = "rating_")
+    @SerializedName("rating")
+    @Embedded(prefix = "rating_")
     val rating: Rating,
-    @field:SerializedName("allActiveFlashSales") val allActiveFlashSales: List<String>
+    @SerializedName("allActiveFlashSales") val allActiveFlashSales: List<String>
 ) {
     data class Seller(
-        @field:SerializedName("id") val id: Int,
-        @field:SerializedName("name") val name: String,
-        @field:SerializedName("displayName") val displayName: String
+        @SerializedName("id") val id: Int = 0,
+        @SerializedName("name") val name: String?,
+        @SerializedName("displayName") val displayName: String?
     )
 
     data class Brand(
 
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?
     )
 
     data class Status(
 
-        @field:SerializedName("publish") val publish: Boolean,
-        @field:SerializedName("sale") val sale: String
+        @SerializedName("publish") val publish: Boolean,
+        @SerializedName("sale") val sale: String?
     )
 
     data class Objective(
 
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?
     )
 
     data class ProductType(
 
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?
     )
 
     data class Price(
 
-        @field:SerializedName("supplierSalePrice") val supplierSalePrice: Int,
-        @field:SerializedName("sellPrice") val sellPrice: Int
+        @SerializedName("supplierSalePrice") val supplierSalePrice: Int = 0,
+        @SerializedName("sellPrice") val sellPrice: Int = 0
     )
 
     data class ProductLine(
 
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?
     )
 
     data class Color(
 
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?
     )
 
     data class PromotionPrices(
 
-        @field:SerializedName("channel") val channel: String,
-        @field:SerializedName("terminal") val terminal: String,
-        @field:SerializedName("finalPrice") val finalPrice: Int,
-        @field:SerializedName("promotionPrice") val promotionPrice: String,
-        @field:SerializedName("bestPrice") val bestPrice: Int,
-        @field:SerializedName("flashSalePrice") val flashSalePrice: String
+        @SerializedName("channel") val channel: String?,
+        @SerializedName("terminal") val terminal: String?,
+        @SerializedName("finalPrice") val finalPrice: Int = 0,
+        @SerializedName("promotionPrice") val promotionPrice: String?,
+        @SerializedName("bestPrice") val bestPrice: Int = 0,
+        @SerializedName("flashSalePrice") val flashSalePrice: String?
     )
 
     data class AttributeSet(
 
-        @field:SerializedName("id") val id: Int,
-        @field:SerializedName("name") val name: String
+        @SerializedName("id") val id: Int = 0,
+        @SerializedName("name") val name: String?
     )
 
     data class Categories(
 
-        @field:SerializedName("id") val id: Int,
-        @field:SerializedName("code") val code: String,
-        @field:SerializedName("name") val name: String,
-        @field:SerializedName("level") val level: Int,
-        @field:SerializedName("parentId") val parentId: Int
+        @SerializedName("id") val id: Int = 0,
+        @SerializedName("code") val code: String?,
+        @SerializedName("name") val name: String?,
+        @SerializedName("level") val level: Int = 0,
+        @SerializedName("parentId") val parentId: Int = 0
     )
 
     data class SeoInfo(
 
-        @field:SerializedName("metaKeyword") val metaKeyword: String,
-        @field:SerializedName("metaTitle") val metaTitle: String,
-        @field:SerializedName("metaDescription") val metaDescription: String,
-        @field:SerializedName("shortDescription") val shortDescription: String,
-        @field:SerializedName("description") val description: String
+        @SerializedName("metaKeyword") val metaKeyword: String?,
+        @SerializedName("metaTitle") val metaTitle: String?,
+        @SerializedName("metaDescription") val metaDescription: String?,
+        @SerializedName("shortDescription") val shortDescription: String?,
+        @SerializedName("description") val description: String?
     )
 
     data class Rating(
 
-        @field:SerializedName("averagePoint") val averagePoint: String,
-        @field:SerializedName("voteCount") val voteCount: Int
+        @SerializedName("averagePoint") val averagePoint: String?,
+        @SerializedName("voteCount") val voteCount: Int = 0
+    )
+
+    data class TotalAvailableByStocks (
+
+        val type : String?,
+        val total : Int = 0
+    )
+
+    data class Images (
+
+        val url : String?,
+        val priority : Int = 0,
+        val path : String?
     )
 }

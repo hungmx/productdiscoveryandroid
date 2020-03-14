@@ -14,23 +14,19 @@
  * limitations under the License.
  */
 
-package com.mxhung.productdiscoveryandroid.di
+package com.mxhung.productdiscoveryandroid.binding
 
-import com.mxhung.productdiscoveryandroid.ListProductFragment
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import androidx.fragment.app.Fragment
+import javax.inject.Inject
 
-@Suppress("unused")
-@Module
-abstract class FragmentBuildersModule {
-    @ContributesAndroidInjector
-    abstract fun contributeRepoFragment(): ListProductFragment
-   /* @ContributesAndroidInjector
-    abstract fun contributeRepoFragment(): RepoFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeUserFragment(): UserFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeSearchFragment(): SearchFragment*/
+/**
+ * Binding adapters that work with a fragment instance.
+ */
+//@OpenForTesting
+class FragmentBindingAdapters @Inject constructor(val fragment: Fragment) {
+//    @BindingAdapter(value = ["imageUrl", "imageRequestListener"], requireAll = false)
+//    fun bindImage(imageView: ImageView, url: String?, listener: RequestListener<Drawable?>?) {
+//        Glide.with(fragment).load(url).listener(listener).into(imageView)
+//    }
 }
+

@@ -19,14 +19,18 @@ package com.mxhung.productdiscoveryandroid.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.mxhung.productdiscoveryandroid.model.Result
+import com.mxhung.productdiscoveryandroid.api.RepoSearchResponse
+import com.mxhung.productdiscoveryandroid.model.Extra
+import com.mxhung.productdiscoveryandroid.model.Products
 
 /**
  * Main database description.
  */
 @Database(
     entities = [
-        Result::class
+        RepoSearchResponse::class,
+        Products::class,
+        Extra::class
         ],
     version = 1,
     exportSchema = false

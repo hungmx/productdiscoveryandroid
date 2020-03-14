@@ -14,23 +14,16 @@
  * limitations under the License.
  */
 
-package com.mxhung.productdiscoveryandroid.di
+package com.mxhung.productdiscoveryandroid.binding
 
-import com.mxhung.productdiscoveryandroid.ListProductFragment
-import dagger.Module
-import dagger.android.ContributesAndroidInjector
+import androidx.databinding.DataBindingComponent
+import androidx.fragment.app.Fragment
 
-@Suppress("unused")
-@Module
-abstract class FragmentBuildersModule {
-    @ContributesAndroidInjector
-    abstract fun contributeRepoFragment(): ListProductFragment
-   /* @ContributesAndroidInjector
-    abstract fun contributeRepoFragment(): RepoFragment
+/**
+ * A Data Binding Component implementation for fragments.
+ */
+class FragmentDataBindingComponent(fragment: Fragment) : DataBindingComponent {
+    private val adapter = FragmentBindingAdapters(fragment)
 
-    @ContributesAndroidInjector
-    abstract fun contributeUserFragment(): UserFragment
-
-    @ContributesAndroidInjector
-    abstract fun contributeSearchFragment(): SearchFragment*/
+    fun getFragmentBindingAdapters() = adapter
 }

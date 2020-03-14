@@ -18,6 +18,7 @@ package com.mxhung.productdiscoveryandroid
 
 import android.app.Activity
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.mxhung.productdiscoveryandroid.di.AppInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -31,6 +32,8 @@ class ProductDiscoveryApp : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
         AppInjector.init(this)
+        Stetho.initializeWithDefaults(this);
+
     }
 
     override fun activityInjector() = dispatchingAndroidInjector

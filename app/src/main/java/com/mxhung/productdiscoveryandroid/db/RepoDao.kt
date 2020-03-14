@@ -39,7 +39,7 @@ abstract class RepoDao {
     abstract fun insertRepos(repositories: List<Products>)
 
     @Query("SELECT * FROM Products")
-    abstract fun search(query: String): LiveData<List<Products>>
+    abstract fun search(): LiveData<List<Products>>
 
    /* @Insert(onConflict = OnConflictStrategy.IGNORE)
     abstract fun createRepoIfNotExists(repo: Repo): Long

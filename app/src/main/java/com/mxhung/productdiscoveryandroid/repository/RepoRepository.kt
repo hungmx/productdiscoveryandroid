@@ -16,14 +16,19 @@
 
 package com.mxhung.productdiscoveryandroid.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.mxhung.productdiscoveryandroid.AppExecutors
+import com.mxhung.productdiscoveryandroid.api.ApiSuccessResponse
 import com.mxhung.productdiscoveryandroid.api.ProductDiscoveryService
+import com.mxhung.productdiscoveryandroid.api.RepoSearchResponse
 import com.mxhung.productdiscoveryandroid.db.GithubDb
 import com.mxhung.productdiscoveryandroid.db.RepoDao
 import com.mxhung.productdiscoveryandroid.model.Products
 import com.mxhung.productdiscoveryandroid.model.Resource
 import com.mxhung.productdiscoveryandroid.model.Result
+import com.mxhung.productdiscoveryandroid.util.RateLimiter
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -42,7 +47,7 @@ class RepoRepository @Inject constructor(
     private val githubService: ProductDiscoveryService
 ) {
 
-//    private val repoListRateLimit = RateLimiter<String>(10, TimeUnit.MINUTES)
+    private val repoListRateLimit = RateLimiter<String>(10, TimeUnit.MINUTES)
 
    /* fun loadRepos(owner: String): LiveData<Resource<List<Result>>> {
         return object : NetworkBoundResource<List<Result>, List<Result>>(appExecutors) {
@@ -145,32 +150,45 @@ class RepoRepository @Inject constructor(
           }.asLiveData()
       }*/
     fun search(query: String): LiveData<Resource<List<Products>>> {
-        return object : NetworkBoundResource<List<Products>, Result>(appExecutors) {
+        return object : NetworkBoundResource<List<Products>, RepoSearchResponse>(appExecutors) {
 
-            override fun saveCallResult(item: Result) {
+            override fun saveCallResult(item: RepoSearchResponse) {
 //                val repoIds = item.result.map { it.id }
-                val repoIds = item.products.map { it.sku }
+//                val repoIds = item.products.map { it.sku }
 //                val repoSearchResult = RepoSearchResult(
 //                    query = query,
 //                    repoIds = repoIds,
 //                    totalCount = item.total,
 //                    next = item.nextPage
 //                )
+                Log.d("hungmx search ", item.result.products.toString())
                 db.runInTransaction {
-                    repoDao.insertRepos(item.products)
+                    repoDao.insertRepos(item.result.products)
 //                    repoDao.insert(repoSearchResult)
                 }
             }
 
-            override fun shouldFetch(data: List<Products>?) = data == null
+            override fun shouldFetch(data: List<Products>?): Boolean{
+                return data == null || data.isEmpty() || repoListRateLimit.shouldFetch(query)
+            }
 
             override fun loadFromDb(): LiveData<List<Products>> {
-                return repoDao.search(query)
+                return repoDao.search()
             }
 
             override fun createCall() = githubService.searchRepos(query)
 
+            override fun processResponse(response: ApiSuccessResponse<RepoSearchResponse>)
+                    : RepoSearchResponse {
+                val body = response.body
+//                body.nextPage = response.nextPage
+                return body
+            }
 
+            override fun onFetchFailed() {
+                super.onFetchFailed()
+                repoListRateLimit.reset(query)
+            }
         }.asLiveData()
     }
 }
