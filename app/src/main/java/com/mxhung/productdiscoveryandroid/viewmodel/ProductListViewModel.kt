@@ -14,27 +14,22 @@
  * limitations under the License.
  */
 
-package com.mxhung.productdiscoveryandroid.db
+package com.mxhung.productdiscoveryandroid.viewmodel
 
-
-import androidx.room.Database
-import androidx.room.RoomDatabase
-import com.mxhung.productdiscoveryandroid.api.RepoSearchResponse
-import com.mxhung.productdiscoveryandroid.model.Extra
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.mxhung.productdiscoveryandroid.model.Products
+import com.mxhung.productdiscoveryandroid.model.Resource
+import com.mxhung.productdiscoveryandroid.repository.RepoRepository
+import javax.inject.Inject
 
-/**
- * Main database description.
- */
-@Database(
-    entities = [
-        RepoSearchResponse::class,
-        Products::class,
-        Extra::class
-        ],
-    version = 1,
-    exportSchema = false
-)
-abstract class GithubDb : RoomDatabase() {
-    abstract fun repoDao(): RepoDao
+class ProductListViewModel @Inject constructor(repoRepository: RepoRepository) : ViewModel() {
+
+    private val _query = MutableLiveData<String>()
+    val query : LiveData<String> = _query
+
+    val results: LiveData<Resource<List<Products>>> = repoRepository.search("")
+
+
 }

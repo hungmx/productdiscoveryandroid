@@ -26,7 +26,8 @@
         android:layout_marginTop="@dimen/margin_12dp"
         android:layout_marginStart="@dimen/margin_12dp"
         android:layout_marginBottom="@dimen/margin_12dp"
-        android:layout_marginLeft="@dimen/margin_12dp" />
+        android:layout_marginLeft="@dimen/margin_12dp"
+        />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:layout_width="0dp"
@@ -41,16 +42,21 @@
         android:layout_marginLeft="@dimen/margin_12dp"
         android:layout_marginEnd="@dimen/margin_12dp"
         android:hint="Nhập tên, mã sản phẩm"
-        android:drawableStart="@mipmap/ic_launcher"
-        android:drawableLeft="@mipmap/ic_launcher"
+        android:drawableStart="@drawable/search"
+        android:drawableLeft="@drawable/search"
         android:background="@drawable/background_border"
         android:textSize="@dimen/text_size_14sp"
-        android:textColor="@color/coolGrey"/>
+        android:textColor="@color/coolGrey"
+        android:focusable="false"/>
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlProductList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_product"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="1">
     </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

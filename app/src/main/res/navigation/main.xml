@@ -1,44 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/listProductFragment">
 
     <fragment
         android:id="@+id/listProductFragment"
-        android:name="com.mxhung.productdiscoveryandroid.ListProductFragment"
-        android:label="ListProductFragment" >
-       <!-- <action
-            android:id="@+id/showRepo"
-            app:destination="@id/repoFragment" />-->
-    </fragment>
-   <!-- <fragment
-        android:id="@+id/repoFragment"
-        android:name="com.android.example.github.ui.repo.RepoFragment"
-        android:label="RepoFragment" >
-        <argument
-            android:name="owner"
-            app:argType="string" />
-        <argument
-            android:name="name"
-            app:argType="string" />
+        android:name="com.mxhung.productdiscoveryandroid.ui.ProductListFragment"
+        android:label="ProductListFragment"
+        tools:layout="@layout/fragment_product_list">
         <action
-            android:id="@+id/showUser"
-            app:destination="@id/userFragment" />
+            android:id="@+id/actionShowProductDetail"
+            app:destination="@id/productDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userFragment"
-        android:name="com.android.example.github.ui.user.UserFragment"
-        android:label="UserFragment" >
+        android:id="@+id/productDetailFragment"
+        android:name="com.mxhung.productdiscoveryandroid.ui.ProductDetailFragment"
+        android:label="ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail">
         <argument
-            android:name="login"
-            app:argType="string"/>
-        <argument
-            android:name="avatarUrl"
-            android:defaultValue="@null"
-            app:argType="string"
-            app:nullable="true" />
-        <action
-            android:id="@+id/showRepo"
-            app:destination="@id/repoFragment" />
-    </fragment>-->
+            android:name="sku"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -4,10 +4,10 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
-import com.mxhung.productdiscoveryandroid.db.GithubTypeConverters
+import com.mxhung.productdiscoveryandroid.db.ProductDiscoveryTypeConverters
 
 @Entity(primaryKeys = ["sku"])
-@TypeConverters(GithubTypeConverters::class)
+@TypeConverters(ProductDiscoveryTypeConverters::class)
 data class Products(
     @SerializedName("sku") val sku: Int = 0,
     @SerializedName("name") val name: String?,

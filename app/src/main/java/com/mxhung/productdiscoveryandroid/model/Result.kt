@@ -1,9 +1,6 @@
 package com.mxhung.productdiscoveryandroid.model
 
-import androidx.room.Entity
-import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
-import com.mxhung.productdiscoveryandroid.db.GithubTypeConverters
 
 data class Result (
 	@SerializedName("products") val products : List<Products>,
