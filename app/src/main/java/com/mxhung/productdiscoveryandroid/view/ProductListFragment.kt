@@ -1,4 +1,4 @@
-package com.mxhung.productdiscoveryandroid.ui
+package com.mxhung.productdiscoveryandroid.view
 
 import android.os.Bundle
 import android.util.Log
@@ -25,7 +25,7 @@ class ProductListFragment : Fragment(), Injectable {
     val productListViewModel: ProductListViewModel by viewModels {
         viewModelFactory
     }
-    val adapter = ProductAdapter()
+    private val adapter = ProductAdapter()
 
     var binding by autoCleared<FragmentProductListBinding>()
     override fun onCreateView(

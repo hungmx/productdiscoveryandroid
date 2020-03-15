@@ -13,4 +13,18 @@
     <color name="reddishOrange">#f5471e</color>
     <color name="silver">#c6cace</color>
     <color name="white">#FFFFFF</color>
+
+    <array name="array_dot_inactive">
+        <item>@color/paleGrey</item>
+        <item>@color/paleGrey</item>
+        <item>@color/paleGrey</item>
+        <item>@color/paleGrey</item>
+    </array>
+
+    <array name="array_dot_active">
+        <item>@color/tomato</item>
+        <item>@color/tomato</item>
+        <item>@color/tomato</item>
+        <item>@color/tomato</item>
+    </array>
 </resources>

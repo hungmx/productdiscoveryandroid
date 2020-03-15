@@ -2,5 +2,9 @@
     <string name="app_name">Product Discovery Android</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="san_pham">Sản phẩm cùng loại</string>
+    <string name="tam_het">Tạm hết hàng</string>
+    <string name="tab_text_1">Mô tả sản phẩm</string>
+    <string name="tab_text_2">Thông số kỹ thuật</string>
+    <string name="tab_text_3">So sánh giá</string>
 </resources>

@@ -2,8 +2,9 @@
 <resources>
     <!-- size for both height and width -->
     <dimen name="size_8dp">8dp</dimen>
+    <dimen name="size_42dp">42dp</dimen>
     <dimen name="size_80dp">80dp</dimen>
-    <dimen name="size_156dp">156dp</dimen>
+    <dimen name="size_150dp">150dp</dimen>
     <dimen name="size_327dp">327dp</dimen>
     <!-- height -->
     <dimen name="height_32dp">32dp</dimen>
@@ -14,6 +15,7 @@
     <dimen name="margin_2dp">2dp</dimen>
     <dimen name="margin_4dp">4dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
     <dimen name="margin_8dp">8dp</dimen>
     <dimen name="margin_12dp">12dp</dimen>
     <dimen name="margin_16dp">16dp</dimen>

@@ -12,6 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/viewContent"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_104dp"
         android:onClick="@{clickListener}"
@@ -28,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/ic_thumnail_default"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvName"

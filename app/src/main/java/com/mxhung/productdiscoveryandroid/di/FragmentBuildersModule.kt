@@ -1,7 +1,7 @@
 package com.mxhung.productdiscoveryandroid.di
 
-import com.mxhung.productdiscoveryandroid.ui.ProductDetailFragment
-import com.mxhung.productdiscoveryandroid.ui.ProductListFragment
+import com.mxhung.productdiscoveryandroid.view.ProductDetailFragment
+import com.mxhung.productdiscoveryandroid.view.ProductListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

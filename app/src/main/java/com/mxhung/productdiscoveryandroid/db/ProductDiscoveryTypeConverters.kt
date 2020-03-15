@@ -17,7 +17,6 @@ class ProductDiscoveryTypeConverters {
                 try {
                     it.toInt()
                 } catch (ex: NumberFormatException) {
-//                    Timber.e(ex, "Cannot convert $it to number")
                     null
                 }
             }
@@ -33,9 +32,8 @@ class ProductDiscoveryTypeConverters {
         return data?.let { it ->
             it.split(",").map {
                 try {
-                    it.toString()
+                    it
                 } catch (ex: NumberFormatException) {
-//                    Timber.e(ex, "Cannot convert $it to number")
                     null
                 }
             }

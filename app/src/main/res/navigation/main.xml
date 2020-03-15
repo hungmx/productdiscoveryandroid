@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/listProductFragment"
-        android:name="com.mxhung.productdiscoveryandroid.ui.ProductListFragment"
+        android:name="com.mxhung.productdiscoveryandroid.view.ProductListFragment"
         android:label="ProductListFragment"
         tools:layout="@layout/fragment_product_list">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.mxhung.productdiscoveryandroid.ui.ProductDetailFragment"
+        android:name="com.mxhung.productdiscoveryandroid.view.ProductDetailFragment"
         android:label="ProductDetailFragment"
         tools:layout="@layout/fragment_product_detail">
         <argument
